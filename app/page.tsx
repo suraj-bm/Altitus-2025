@@ -140,7 +140,7 @@ export default function Home() {
               <Calendar className="text-[#E63946] flex-shrink-0 w-5 h-5 md:w-6 md:h-6" />
               <div className="flex flex-col items-start">
                 <span className="text-[10px] text-[#C5C6C7]/60 inter-medium uppercase tracking-wider">Date</span>
-                <span className="text-[#F1FAEE] text-sm md:text-base inter-semibold">Nov 10-12, 2025</span>
+                <span className="text-[#F1FAEE] text-sm md:text-base inter-semibold">Nov 10, 2025</span>
               </div>
             </div>
             <div className="flex items-center gap-3 glass px-5 py-3 rounded-xl hover:border-[#1D3557]/50 transition-all">
@@ -159,39 +159,85 @@ export default function Home() {
             </div>
           </motion.div>
 
-          {/* Countdown Timer */}
+          {/* Countdown Timer with Enhanced Spacing */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 1.0 }}
-            className="w-full max-w-4xl my-6 md:my-8"
+            className="w-full max-w-4xl mt-8 md:mt-12 lg:mt-16 mb-8 md:mb-10 lg:mb-12"
           >
             <CountdownTimer targetDate={EVENT_START_DATE} />
           </motion.div>
 
-          {/* CTA Buttons */}
+          {/* CTA Buttons with Industry-Grade Design */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.2 }}
-            className="flex flex-col sm:flex-row gap-5 md:gap-6 justify-center items-center pt-2"
+            className="flex flex-col sm:flex-row gap-4 md:gap-5 justify-center items-stretch sm:items-center w-full max-w-2xl px-4"
           >
-            <Link href="/events">
+            <Link href="/events" className="flex-1 sm:flex-initial">
               <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-10 md:px-12 py-4 md:py-5 bg-gradient-to-r from-[#1D3557] to-[#457B9D] text-[#F1FAEE] rounded-xl font-bold text-base md:text-lg inter-bold shadow-2xl shadow-[#457B9D]/50 hover:shadow-[#457B9D]/70 transition-all"
+                whileHover={{ scale: 1.03, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                className="w-full sm:w-auto group relative px-8 md:px-10 lg:px-12 py-4 md:py-4.5 lg:py-5 bg-gradient-to-r from-[#1D3557] via-[#457B9D] to-[#1D3557] bg-size-200 bg-pos-0 hover:bg-pos-100 text-white rounded-xl font-bold text-base md:text-lg inter-bold shadow-xl shadow-[#457B9D]/40 hover:shadow-2xl hover:shadow-[#457B9D]/60 transition-all duration-300 overflow-hidden"
+                style={{
+                  backgroundSize: '200% 100%',
+                }}
               >
-                Explore Events
+                {/* Shimmer Effect */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                  initial={{ x: '-100%' }}
+                  whileHover={{ x: '100%' }}
+                  transition={{ duration: 0.6 }}
+                />
+                <span className="relative z-10 flex items-center justify-center gap-2">
+                  Explore Events
+                  <motion.span
+                    initial={{ x: 0 }}
+                    whileHover={{ x: 5 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    →
+                  </motion.span>
+                </span>
               </motion.button>
             </Link>
-            <Link href="/register">
+            
+            <Link href="/register" className="flex-1 sm:flex-initial">
               <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-10 md:px-12 py-4 md:py-5 border-2 border-[#E63946] text-[#E63946] rounded-xl font-bold text-base md:text-lg inter-bold hover:bg-[#E63946]/20 transition-all backdrop-blur-sm"
+                whileHover={{ scale: 1.03, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                className="w-full sm:w-auto group relative px-8 md:px-10 lg:px-12 py-4 md:py-4.5 lg:py-5 bg-gradient-to-r from-[#E63946] to-[#C5283D] text-white rounded-xl font-bold text-base md:text-lg inter-bold shadow-xl shadow-[#E63946]/40 hover:shadow-2xl hover:shadow-[#E63946]/60 transition-all duration-300 overflow-hidden border-2 border-[#E63946]/50 hover:border-[#E63946]"
               >
-                Register Now
+                {/* Animated Glow Effect */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                  animate={{
+                    x: ['-100%', '100%'],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    repeatDelay: 1,
+                  }}
+                />
+                <span className="relative z-10 flex items-center justify-center gap-2">
+                  Register Now
+                  <motion.span
+                    className="inline-block"
+                    animate={{
+                      scale: [1, 1.2, 1],
+                    }}
+                    transition={{
+                      duration: 1.5,
+                      repeat: Infinity,
+                    }}
+                  >
+                    ⚡
+                  </motion.span>
+                </span>
               </motion.button>
             </Link>
           </motion.div>
