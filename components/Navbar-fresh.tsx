@@ -1,4 +1,4 @@
- "use client";
+"use client";
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
@@ -38,8 +38,7 @@ export default function Navbar() {
       {/* Desktop & Tablet Navigation */}
       <div className="hidden md:block">
         <div className="max-w-screen-xl mx-auto px-6 lg:px-8">
-          <div className="flex items-center h-20 relative">
-            
+          <div className="flex items-center justify-between h-20 relative">
             {/* Logo - Left */}
             <Link href="/" className="flex items-center gap-2 group flex-shrink-0 z-20">
               <motion.div
@@ -63,7 +62,7 @@ export default function Navbar() {
             </Link>
 
             {/* Navigation Links - Center */}
-            <nav className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+            <nav>
               <ul className="flex items-center gap-8 lg:gap-10">
                 {navLinks.map((link) => {
                   const isActive = pathname === link.href;
@@ -94,6 +93,21 @@ export default function Navbar() {
               </ul>
             </nav>
 
+            {/* Auth Buttons - Right */}
+            <div className="flex items-center gap-4">
+              <Link
+                href="/login"
+                className="text-sm px-4 py-2 text-gray-300 border border-gray-500 rounded-full hover:text-white hover:border-[#E63946] transition-all"
+              >
+                Login
+              </Link>
+              <Link
+                href="/signup"
+                className="text-sm px-4 py-2 bg-[#E63946] text-white rounded-full hover:bg-[#E63946]/80 transition-all"
+              >
+                Sign Up
+              </Link>
+            </div>
           </div>
         </div>
       </div>
@@ -101,24 +115,15 @@ export default function Navbar() {
       {/* Mobile Navigation */}
       <div className="md:hidden">
         <div className="flex items-center justify-between h-16 px-4">
-          
-          {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
             <div className="relative w-8 h-8 rounded-full overflow-hidden">
-              <Image
-                src="/altius-bg.png"
-                alt="Altius 2025"
-                fill
-                className="object-cover"
-                priority
-              />
+              <Image src="/altius-bg.png" alt="Altius 2025" fill className="object-cover" priority />
             </div>
             <span className="goldman-bold text-lg text-white tracking-wider">
               ALTIUS <span className="text-[#E63946]">2025</span>
             </span>
           </Link>
 
-          {/* Mobile Menu Button */}
           <motion.button
             onClick={() => setIsOpen(!isOpen)}
             whileTap={{ scale: 0.9 }}
@@ -127,11 +132,10 @@ export default function Navbar() {
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </motion.button>
-
         </div>
       </div>
 
-      {/* Mobile Menu - Fullscreen Overlay */}
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -139,7 +143,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.4, ease: "easeInOut" }}
-            className="lg:hidden fixed inset-0 top-20 bg-black/95 backdrop-blur-md z-40"
+            className="lg:hidden fixed inset-0 top-16 bg-black/95 backdrop-blur-md z-40"
           >
             <div className="flex flex-col items-center justify-center h-full px-6 space-y-8">
               {navLinks.map((link, index) => {
@@ -172,6 +176,24 @@ export default function Navbar() {
                   </motion.div>
                 );
               })}
+
+              {/* Auth Buttons (Mobile) */}
+              <div className="flex flex-col gap-4 mt-10">
+                <Link
+                  href="/login"
+                  onClick={() => setIsOpen(false)}
+                  className="text-center px-6 py-2 border border-gray-400 text-gray-300 rounded-full hover:text-white hover:border-[#E63946] transition-all"
+                >
+                  Login
+                </Link>
+                <Link
+                  href="/signup"
+                  onClick={() => setIsOpen(false)}
+                  className="text-center px-6 py-2 bg-[#E63946] text-white rounded-full hover:bg-[#E63946]/80 transition-all"
+                >
+                  Sign Up
+                </Link>
+              </div>
             </div>
           </motion.div>
         )}
